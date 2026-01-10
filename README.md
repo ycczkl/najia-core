@@ -1,77 +1,79 @@
 
 # najia-core
 
-Core logic library for Six Lines Divination (Liu Yao / NaJia), including NaJia calculation, Astrology (Four Pillars), and global hexagram analysis.
+[English Version](README_EN.md)
 
-## Features
+六爻纳甲占卜核心逻辑库，包含纳甲计算、八字排盘（四柱）、以及全局卦象分析功能。
 
-- **NaJia (纳甲)**: Full Jing Fang NaJia system implementation.
-  - Generates Stems, Branches, Five Elements, Six Gods, Shi/Ying, Liu Qin.
-  - Supports detailed Fu Shen (Hidden Spirit) logic.
-- **Astrology Support**: 
-  - Solar/Lunar date conversion (powered by `lunar-javascript`).
-  - Four Pillars (BaZi) calculation.
-  - 12 Life Stages (Chang Sheng) and Xun Kong (Void) calculation.
-- **Global Analysis**:
-  - Detects San He (Three Harmony) & San Xing (Three Penalties).
-  - Identifies Liu Chong (Six Clashes) & Liu He (Six Combinations).
-  - Fan Yin / Fu Yin detection.
-- **Utility**:
-  - Random Hexagram generation (Coin Toss method).
-  - Hexagram transformation logic.
+## 功能特性
 
-## Installation
+- **纳甲系统**: 完整的京房纳甲系统实现。
+  - 生成天干、地支、五行、六神、世应、六亲。
+  - 支持详细的伏神（飞伏神）逻辑。
+- **八字排盘支持**:
+  - 公历/农历转换（基于 `lunar-javascript`）。
+  - 四柱（八字）排盘计算。
+  - 十二长生与旬空计算。
+- **全局分析**:
+  - 检测三合局与三刑。
+  - 识别六冲卦与六合卦。
+  - 反吟与伏吟检测。
+- **工具**:
+  - 随机起卦（模拟铜钱掷币法）。
+  - 卦象变换逻辑（本卦变之卦）。
+
+## 安装
 
 ```bash
 npm install najia-core
 ```
 
-## Usage
+## 使用方法
 
-### 1. Basic Hexagram & NaJia
+### 1. 基础 hexagram 与纳甲数据
 
 ```typescript
 import { generateRandomHexagram, getNaJiaData } from 'najia-core';
 
-// 1. Generate or define a hexagram
-const hexagram = generateRandomHexagram(); 
-// or manually: { lines: ['young_yang', 'old_yin', ...] }
+// 1. 生成或定义卦象
+const hexagram = generateRandomHexagram();
+// 或手动指定: { lines: ['young_yang', 'old_yin', ...] }
 
-// 2. Calculate NaJia details (Shi/Ying, Elements, etc.) based on current date
+// 2. 根据当前日期计算纳甲详情（世应、五行等）
 const najiaData = getNaJiaData(hexagram, new Date());
 
-console.log(najiaData[0]); 
-// Output: { stem: 'Jia', branch: 'Zi', fiveElement: 'Water', sixGod: 'Green Dragon', ... }
+console.log(najiaData[0]);
+// 输出: { stem: '甲', branch: '子', fiveElement: '水', sixGod: '青龙', ... }
 ```
 
-### 2. Astrology & Pillars
+### 2. 八字排盘
 
 ```typescript
 import { getAstrologyData } from 'najia-core';
 
 const astrology = getAstrologyData(new Date());
-console.log(astrology.yearPillar); // e.g., '甲子'
+console.log(astrology.yearPillar); // 例如：'甲子'
 ```
 
-### 3. Global Analysis
+### 3. 全局分析
 
 ```typescript
 import { analyzeGlobalIndicators } from 'najia-core';
 
-// Analyze relationships between branches
+// 分析地支关系
 const alerts = analyzeGlobalIndicators(
-  ['子', '寅', '辰', ...], // Hexagram Branches
-  ['', '', '', ...],      // Transformed Branches (if any)
-  [0],                    // Moving Line Indices
-  '寅',                   // Month Branch
-  '申',                   // Day Branch
-  'Heaven'                // Hexagram Name
+  ['子', '寅', '辰', ...], // 本卦地支
+  ['', '', '', ...],      // 变卦地支（如有）
+  [0],                    // 动爻索引
+  '寅',                   // 月建
+  '申',                   // 日建
+  '乾为天'                // 卦名
 );
 
 console.log(alerts);
-// Output: [{ type: 'LiuChong', message: 'Six Clash Detected', ... }]
+// 输出: [{ type: 'LiuChong', message: '主卦六冲', ... }]
 ```
 
-## License
+## 许可证
 
 ISC
