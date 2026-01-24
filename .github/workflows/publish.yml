@@ -6,8 +6,8 @@ on:
     branches:
       - main
     paths:
-      - 'packages/najia-core/package.json'
-      - 'packages/najia-core/src/**'
+      - 'package.json'
+      - 'src/**'
   release:
     types: [created]
 
@@ -19,7 +19,7 @@ jobs:
       id-token: write
     defaults:
       run:
-        working-directory: packages/najia-core
+        working-directory: .
 
     steps:
       - name: Checkout
@@ -32,6 +32,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
 
       - name: Install Dependencies
+        # explicitly install in root since we are in root
         run: npm install
 
       - name: Build
