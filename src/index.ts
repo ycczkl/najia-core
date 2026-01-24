@@ -1,4 +1,4 @@
-
+// Najia Core - Six Lines Divination Logic
 export * from './types';
 export * from './iching';
 export * from './astrology';
