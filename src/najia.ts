@@ -235,13 +235,19 @@ function generateNaJiaLines(lines: YaoType[], palaceElement: string): NaJiaLine[
     return result;
 }
 
-export function getNaJiaData(hexagram: HexagramData, dateInput: Date | string = new Date(), manualDayStem?: string): NaJiaLine[] {
+export function getNaJiaData(hexagram: HexagramData, dateInput: Date | string = new Date(), manualDayStem?: string, palaceElementOverride?: string): NaJiaLine[] {
     const lines = hexagram.lines;
     // Normalize Date
     const date = typeof dateInput === 'string' ? new Date(dateInput) : dateInput;
 
-    const { palaceElement, shiIndex, palaceName, isYouHun, isGuiHun } = getHexagramInfo(lines);
+    const hexInfo = getHexagramInfo(lines);
+    let { palaceElement, shiIndex, palaceName, isYouHun, isGuiHun } = hexInfo;
     const yingIndex = (shiIndex + 3) % 6;
+
+    // Override palace element if provided (e.g. for Bian Gua traditional method)
+    if (palaceElementOverride) {
+        palaceElement = palaceElementOverride;
+    }
 
     // Calculate Day Stem for Six Gods
     let dayStem: string;
