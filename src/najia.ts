@@ -135,7 +135,7 @@ export function getHexagramInfo(lines: YaoType[]): { palaceElement: string, shiI
         '011001': { e: '木', n: 'xun' }, // Gu (Xun)
         '010000': { e: '水', n: 'kan' }, // Shi (Kan)
         '101111': { e: '火', n: 'li' }, // Tong Ren (Li)
-        '001010': { e: '土', n: 'gen' }, // Jian (Gen)
+        '001011': { e: '土', n: 'gen' }, // Jian 渐 (Gen)
         '110100': { e: '金', n: 'dui' }, // Gui Mei (Dui)
     };
 
