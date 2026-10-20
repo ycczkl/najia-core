@@ -142,7 +142,7 @@ export function getHexagramInfo(lines: YaoType[]): { palaceElement: string, shiI
     if (GUI_HUN_MAP[binary]) return { palaceElement: GUI_HUN_MAP[binary].e, shiIndex: 2, palaceName: GUI_HUN_MAP[binary].n, isGuiHun: true };
 
     // Fallback
-    return { palaceElement: '金', shiIndex: 2, palaceName: 'qian' };
+    throw new Error(`Unable to resolve palace for hexagram ${binary}`);
 }
 
 const GENERATION: Record<string, string> = { '金': '水', '水': '木', '木': '火', '火': '土', '土': '金' };
