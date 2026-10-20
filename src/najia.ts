@@ -93,7 +93,7 @@ const PURE_GUAS: Record<string, { name: string, element: string, binary: string 
     '110110': { name: 'dui', element: '金', binary: '110110' }
 };
 
-function getHexagramInfo(lines: YaoType[]): { palaceElement: string, shiIndex: number, palaceName: string, isYouHun?: boolean, isGuiHun?: boolean } {
+export function getHexagramInfo(lines: YaoType[]): { palaceElement: string, shiIndex: number, palaceName: string, isYouHun?: boolean, isGuiHun?: boolean } {
     const bits = lines.map(getBit); // [b1, b2, b3, b4, b5, b6] (Bottom->Top)
     const binary = bits.join('');
 
