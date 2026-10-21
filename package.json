@@ -1,6 +1,6 @@
 {
     "name": "najia-core",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "Core logic for Six Lines Divination (Najia)",
     "type": "module",
     "main": "dist/index.js",
