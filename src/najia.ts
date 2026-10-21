@@ -93,7 +93,7 @@ const PURE_GUAS: Record<string, { name: string, element: string, binary: string 
     '110110': { name: 'dui', element: '金', binary: '110110' }
 };
 
-function getHexagramInfo(lines: YaoType[]): { palaceElement: string, shiIndex: number, palaceName: string, isYouHun?: boolean, isGuiHun?: boolean } {
+export function getHexagramInfo(lines: YaoType[]): { palaceElement: string, shiIndex: number, palaceName: string, isYouHun?: boolean, isGuiHun?: boolean } {
     const bits = lines.map(getBit); // [b1, b2, b3, b4, b5, b6] (Bottom->Top)
     const binary = bits.join('');
 
@@ -135,14 +135,14 @@ function getHexagramInfo(lines: YaoType[]): { palaceElement: string, shiIndex: n
         '011001': { e: '木', n: 'xun' }, // Gu (Xun)
         '010000': { e: '水', n: 'kan' }, // Shi (Kan)
         '101111': { e: '火', n: 'li' }, // Tong Ren (Li)
-        '001010': { e: '土', n: 'gen' }, // Jian (Gen)
+        '001011': { e: '土', n: 'gen' }, // Jian 渐 (Gen)
         '110100': { e: '金', n: 'dui' }, // Gui Mei (Dui)
     };
 
     if (GUI_HUN_MAP[binary]) return { palaceElement: GUI_HUN_MAP[binary].e, shiIndex: 2, palaceName: GUI_HUN_MAP[binary].n, isGuiHun: true };
 
     // Fallback
-    return { palaceElement: '金', shiIndex: 2, palaceName: 'qian' };
+    throw new Error(`Unable to resolve palace for hexagram ${binary}`);
 }
 
 const GENERATION: Record<string, string> = { '金': '水', '水': '木', '木': '火', '火': '土', '土': '金' };
